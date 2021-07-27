@@ -1,0 +1,29 @@
+<div class="container">
+    <h3 class="text-dark text-center">List of Category</h3>
+
+    <table class="table text-center" border="1">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let c of categories">
+                <th scope="row">{{ c.Id }}</th>
+
+                <td>{{ c.Name}}</td>
+                <td *ngIf="c.status===true; else elseBlock"><input type="checkbox" checked></td>
+                <ng-template #elseBlock>
+                    <td><input type="checkbox"></td>
+                </ng-template>
+                <td>
+                    <a href="javascript:void(0)" class="btn btn-warning btn-edit" style="margin-right: 10px;">Edit</a>
+                    <a href="javascript:void(0)" class="btn btn-warning btn-danger">Remove</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

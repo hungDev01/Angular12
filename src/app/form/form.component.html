@@ -1,0 +1,31 @@
+
+<div class="container">
+    <h3>Form đăng ký</h3>
+   <div class="col-md-6">
+    <form action="" (ngSubmit)="onSubmit()" #myForm="ngForm">
+        <div class="form-group">
+            <label for="" >Name</label>
+            <input type="text" class="form-control" name="Name" [(ngModel)]="model.Name" required>
+           <span *ngIf="model.Name == '' " class="ng-invalid-message">Bạn phải nhập tên !</span>
+        </div>
+        <div class="form-group">
+            <label for="" >Email</label>
+            <input type="text" class="form-control" name="Email" [(ngModel)]="model.Email" required>
+            <span *ngIf="model.Email == '' " class="ng-invalid-message">Bạn phải nhập email !</span>
+        </div>
+        <div class="form-group">
+            <label for="" >Password</label>
+            <input type="password" class="form-control" name="Password" [(ngModel)]="model.Password" required>
+            <span *ngIf="model.Password == '' " class="ng-invalid-message">Bạn phải nhập mật khẩu !</span>
+        </div>
+        <div class="form-group">
+           <select name="Class" id="" [(ngModel)]="model.Class" class="form-control" (change)="onChange($event)">
+               <option  *ngFor="let item of listClass" [value]="item">{{item}}</option>
+           </select>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success" type="submit" [disabled]="!myForm.form.valid">Gửi</button>
+        </div>
+    </form>
+   </div>
+</div>

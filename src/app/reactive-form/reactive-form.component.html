@@ -1,0 +1,57 @@
+<div class="container ">
+    <div class="col-md-6">
+        <h1 class="title">Reactie Form</h1>
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="name">
+                    Họ Tên
+                </label>
+                <input type="text" formControlName="name" class="form-control" id="name">
+                <span *ngIf="profileForm.controls.name.invalid" style="color: red;">Bạn phải nhập tên</span>
+            </div>
+            <div class="form-group">
+                <label for="age">
+                    Tuổi
+                </label>
+                <input type="text" formControlName="age" class="form-control" id="age">
+                <span *ngIf="profileForm.controls.age.invalid" style="color: red;">Bạn phải nhập tuổi !</span>
+            </div>
+            <div class="form-group">
+                <label for="class">
+                    Lớp
+                </label>
+                <input type="text" formControlName="class" class="form-control" id="class">
+                <span *ngIf="profileForm.controls.class.invalid" style="color: red;">Bạn phải nhập lớp !</span>
+            </div>
+            <div class="form-group" formGroupName="address">
+                <h4>Address:</h4>
+                <div class="form-group">
+                    <label for="street">Street </label>
+                    <input id="street" type="text" formControlName="street" class="form-control">
+
+                </div>
+                <div class="form-group">
+                    <label for="street">City </label>
+                    <input id="city" type="text" formControlName="city" class="form-control">
+                </div>
+            </div>
+            <div formArrayName="aliases">
+                <h2>Aliases</h2>
+                <button (click)="addAlias()" class="btn btn-light" type="button">+ Add another alias</button>
+
+                <div *ngFor="let alias of aliases.controls; let i=index">
+                    <!-- The repeated alias template -->
+                    <div class="form-group">
+                        <label for="alias-{{ i }}">Alias:</label>
+                        <input id="alias-{{ i }}" type="text" [formControlName]="i" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <p *ngIf="!profileForm.valid">Complete the form to enable button.</p>
+                <button class="btn btn-success" [disabled]="!profileForm.valid">Update Name</button>
+            </div>
+        </form>
+
+    </div>
+</div>
